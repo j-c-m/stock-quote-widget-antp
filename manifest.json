@@ -1,0 +1,17 @@
+{
+    "update_url": "http://clients2.google.com/service/update2/crx",
+    "background": {
+      "scripts": ["js/background.js"],
+      "persistent": false
+    },
+    "version": "1.0",
+    "name": "Shell Widget [ANTP]",
+    "description": "Hello World! [ANTP]",
+    "icons": {
+      "128": "icon.png"
+    },
+    "manifest_version": 2,
+    "web_accessible_resources": ["widget.html"],
+    "content_security_policy": "script-src 'self'; object-src 'self'",
+    "permissions": []
+}
