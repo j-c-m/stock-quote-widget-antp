@@ -56,8 +56,8 @@ $(function() {
   }
 
   function getQuotes(symbols) {
-    if (instance.lastUpdate && instance.lastUpdate >= new Date().getTime() - refresh_ms) {
-      updQuotes(instance.quoteData);
+    if (instance.lastUpdate && instance.lastUpdate > new Date().getTime() - refresh_ms) {
+      refreshTimer();
       return;
     }
     chrome.extension.sendMessage({
@@ -69,6 +69,7 @@ $(function() {
         instance.lastUpdate = new Date().getTime();
         localStorage.setItem(guid, JSON.stringify(instance));
         updQuotes(instance.quoteData);
+        refreshTimer();
       }
     });
   }
@@ -104,8 +105,10 @@ $(function() {
     });
   }
 
-  setInterval(function() {
-    getQuotes(instance.symbols);
-  }, refresh_ms);
+  function refreshTimer() {
+    setTimeout(function() {
+      getQuotes(instance.symbols);
+    }, refresh_ms);
+  }
 
 });

@@ -16,7 +16,6 @@
   };
 
   chrome.extension.onMessageExternal.addListener(function(request, sender, sendResponse) {
-    console.log(request);
     if (request === "mgmiemnjjchgkmgbeljfocdjjnpjnmcg-poke") {
       chrome.extension.sendMessage(
         sender.id, {
