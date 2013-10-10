@@ -1,3 +1,25 @@
 body {
   background-color: white;
+  font-family: helvetica, arial;
+  margin: 6px 3px;
+}
+
+.red {
+  color: #d14836;
+}
+
+.green {
+  color: #008000;
+}
+
+.rowodd {
+  background-color: #e0e0e0;
+}
+
+.roweven {
+  background-color: #ffffff;
+}
+
+#quotetable {
+  border-collapse: collapse;
 }

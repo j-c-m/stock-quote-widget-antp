@@ -1,17 +1,18 @@
 {
     "update_url": "http://clients2.google.com/service/update2/crx",
     "background": {
-      "scripts": ["js/background.js"],
+      "scripts": ["js/jquery.js", "js/background.js"],
       "persistent": false
     },
-    "version": "1.0",
-    "name": "Shell Widget [ANTP]",
-    "description": "Hello World! [ANTP]",
+    "version": "0.1",
+    "name": "Stock Quote Widget [ANTP]",
+    "description": "Stock quote widget for Awesome New Tab Page [ANTP]",
     "icons": {
       "128": "icon.png"
     },
     "manifest_version": 2,
     "web_accessible_resources": ["widget.html"],
-    "content_security_policy": "script-src 'self'; object-src 'self'",
-    "permissions": []
+    "content_security_policy": "script-src 'self' https://quote.cnbc.com; object-src 'self'",
+    "permissions": [ "https://quote.cnbc.com/*", "storage" ],
+    "options_page": "options.html"
 }
