@@ -94,9 +94,7 @@ $(function() {
         $('#change' + jqSelector(quote.symbol)).addClass('green');
       }
 
-      $('#symbol' + jqSelector(quote.symbol)).click(function(e) {
-        window.open('http://data.cnbc.com/quotes/' + quote.symbol, '_top');
-      });
+      $('#symbol' + jqSelector(quote.symbol)).html('<a target="_top" href="http://data.cnbc.com/quotes/' + quote.symbol + '">' + quote.shortName + '</a>');
 
       $('#change' + jqSelector(quote.symbol)).click(function(e) {
         updQuotes(instance.quoteData, !pct);
