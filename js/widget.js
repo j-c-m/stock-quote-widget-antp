@@ -89,16 +89,19 @@ $(function() {
       }
 
       if (quote.change < 0) {
-        $('#change' + jqSelector(quote.symbol)).addClass('red');
+        $('#change' + jqSelector(quote.symbol)).toggleClass('green',false);
+        $('#change' + jqSelector(quote.symbol)).toggleClass('red',true);
       } else {
-        $('#change' + jqSelector(quote.symbol)).addClass('green');
+        $('#change' + jqSelector(quote.symbol)).toggleClass('green',true);
+        $('#change' + jqSelector(quote.symbol)).toggleClass('red',false);
       }
 
       $('#symbol' + jqSelector(quote.symbol)).html('<a target="_top" href="http://data.cnbc.com/quotes/' + quote.symbol + '">' + quote.shortName + '</a>');
-
+      
+      $('#change' + jqSelector(quote.symbol)).off('click');
       $('#change' + jqSelector(quote.symbol)).click(function(e) {
         updQuotes(instance.quoteData, !pct);
-      })
+      });
 
     });
   }
