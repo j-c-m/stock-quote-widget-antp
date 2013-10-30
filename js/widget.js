@@ -111,5 +111,4 @@ $(function() {
       getQuotes(instance.symbols);
     }, refresh_ms);
   }
-
 });

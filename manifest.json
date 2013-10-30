@@ -4,9 +4,9 @@
       "scripts": ["js/jquery.js", "js/background.js"],
       "persistent": false
     },
-    "version": "0.1",
-    "name": "Stock Quote Widget [ANTP]",
-    "description": "Stock quote widget for Awesome New Tab Page [ANTP]",
+    "version": "2013.10.30",
+    "name": "Real-Time Stock Quote Widget",
+    "description": "Real-time stock quote widget for Awesome New Tab Page",
     "icons": {
       "128": "icon.png"
     },
