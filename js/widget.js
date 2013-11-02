@@ -9,6 +9,12 @@ $(function() {
   if (!instance || instance === "" || localStorage.getItem(guid) === undefined) {
     instance = {};
   }
+  
+  if (!instance.symbols) {
+    instance.symbols = ['.SPX', '.DJIA', '.IXIC'];
+  }
+  
+  quoteTable(instance.symbols);
 
   /* get stored symbols out of google sync */
   chrome.storage.sync.get(guid, function(x) {
@@ -16,6 +22,7 @@ $(function() {
     if (sync_symbols.toString() != instance.symbols.toString()) {
       instance.symbols = sync_symbols;
       instance.lastUpdate = 0;
+      quoteTable(instance.symbols);
       getQuotes(instance.symbols);
     }
   });
@@ -26,29 +33,29 @@ $(function() {
       if (sync_symbols.toString() != instance.symbols.toString()) {
         instance.symbols = sync_symbols;
         instance.lastUpdate = 0;
+        quoteTable(instance.symbols);
         getQuotes(instance.symbols);
       }
     }
-  });
-
-  if (!instance.symbols) {
-    instance.symbols = ['.SPX', '.DJIA', '.IXIC'];
-  }
-
-  instance.symbols.forEach(function(symbol) {
-    var rowstr = '<tr id="row' + symbol + '" class="' + rowclass + '">';
-    rowstr += '<td align="left" id="symbol' + symbol + '">' + symbol + "</td>";
-    rowstr += '<td align="right" id="last' + symbol + '"></td>';
-    rowstr += '<td width="60px" align="right" id="change' + symbol + '"></td>';
-    rowstr += '</tr>';
-    $('#quotetablebody').append(rowstr);
-    rowclass = rowclass == 'rowodd' ? 'roweven' : 'rowodd';
   });
 
   if (instance.quoteData) {
     updQuotes(instance.quoteData);
   }
   getQuotes(instance.symbols);
+  
+  function quoteTable(symbols) {
+    $('#quotetablebody').empty();
+    symbols.forEach(function(symbol) {
+      var rowstr = '<tr id="row' + symbol + '" class="' + rowclass + '">';
+      rowstr += '<td align="left" id="symbol' + symbol + '">' + symbol + "</td>";
+      rowstr += '<td align="right" id="last' + symbol + '"></td>';
+      rowstr += '<td width="60px" align="right" id="change' + symbol + '"></td>';
+      rowstr += '</tr>';
+      $('#quotetablebody').append(rowstr);
+      rowclass = rowclass == 'rowodd' ? 'roweven' : 'rowodd';
+    });
+  }
 
   function jqSelector(str) {
     return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\$1');

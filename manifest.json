@@ -4,7 +4,7 @@
       "scripts": ["js/jquery.js", "js/background.js"],
       "persistent": false
     },
-    "version": "2013.11.2.1",
+    "version": "2013.11.2.2",
     "name": "Real-Time Stock Quote Widget",
     "description": "Real-time stock quote widget for Awesome New Tab Page",
     "icons": {
