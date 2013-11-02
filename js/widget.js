@@ -20,6 +20,17 @@ $(function() {
     }
   });
 
+  chrome.storage.onChanged.addListener(function(changes, namespace) {
+    if (changes[guid]) {
+      var sync_symbols = JSON.parse(changes[guid].newValue);
+      if (sync_symbols.toString() != instance.symbols.toString()) {
+        instance.symbols = sync_symbols;
+        instance.lastUpdate = 0;
+        getQuotes(instance.symbols);
+      }
+    }
+  });
+
   if (!instance.symbols) {
     instance.symbols = ['.SPX', '.DJIA', '.IXIC'];
   }
@@ -89,15 +100,15 @@ $(function() {
       }
 
       if (quote.change < 0) {
-        $('#change' + jqSelector(quote.symbol)).toggleClass('green',false);
-        $('#change' + jqSelector(quote.symbol)).toggleClass('red',true);
+        $('#change' + jqSelector(quote.symbol)).toggleClass('green', false);
+        $('#change' + jqSelector(quote.symbol)).toggleClass('red', true);
       } else {
-        $('#change' + jqSelector(quote.symbol)).toggleClass('green',true);
-        $('#change' + jqSelector(quote.symbol)).toggleClass('red',false);
+        $('#change' + jqSelector(quote.symbol)).toggleClass('green', true);
+        $('#change' + jqSelector(quote.symbol)).toggleClass('red', false);
       }
 
       $('#symbol' + jqSelector(quote.symbol)).html('<a target="_top" href="http://data.cnbc.com/quotes/' + quote.symbol + '">' + quote.shortName + '</a>');
-      
+
       $('#change' + jqSelector(quote.symbol)).off('click');
       $('#change' + jqSelector(quote.symbol)).click(function(e) {
         updQuotes(instance.quoteData, !pct);
