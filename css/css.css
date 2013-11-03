@@ -4,6 +4,10 @@ body {
   margin: 6px 3px;
 }
 
+td {
+  white-space: nowrap;
+}
+
 .red {
   color: #d14836;
 }
