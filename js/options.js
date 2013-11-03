@@ -14,7 +14,8 @@ $(function() {
     var guid = get_guid();
 
     if (guid == 'default') {
-        $('body').text('There are currently no default options for this widget, configure each individually.');
+        $('body').append('<p>There are currently no default options for this widget, each widget instance must be configured individually.</p>');
+        $('body').append('<p><ul><li>Unlock the grid by clicking on the padlock on the left toolbar.</li><li>Configure each widget by mousing over the tile and clicking the green configure gear.</li></ul></p>');
         return;
     }
 
