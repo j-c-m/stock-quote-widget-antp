@@ -9,11 +9,11 @@ $(function() {
   if (!instance || instance === "" || localStorage.getItem(guid) === undefined) {
     instance = {};
   }
-  
+
   if (!instance.symbols) {
     instance.symbols = ['.SPX', '.DJIA', '.IXIC'];
   }
-  
+
   quoteTable(instance.symbols);
 
   /* get stored symbols out of google sync */
@@ -43,14 +43,14 @@ $(function() {
     updQuotes(instance.quoteData);
   }
   getQuotes(instance.symbols);
-  
+
   function quoteTable(symbols) {
     $('#quotetablebody').empty();
     symbols.forEach(function(symbol) {
       var rowstr = '<tr id="row' + symbol + '" class="' + rowclass + '">';
-      rowstr += '<td align="left" id="symbol' + symbol + '">' + symbol + "</td>";
-      rowstr += '<td align="right" id="last' + symbol + '"></td>';
-      rowstr += '<td width="60px" align="right" id="change' + symbol + '"></td>';
+      rowstr += '<td class="symbol" align="left" id="symbol' + symbol + '">' + symbol + "</td>";
+      rowstr += '<td class="last" align="right" id="last' + symbol + '"></td>';
+      rowstr += '<td class="change" align="right" id="change' + symbol + '"></td>';
       rowstr += '</tr>';
       $('#quotetablebody').append(rowstr);
       rowclass = rowclass == 'rowodd' ? 'roweven' : 'rowodd';
@@ -103,7 +103,7 @@ $(function() {
       if (pct) {
         $('#change' + jqSelector(quote.symbol)).html(parseFloat(quote.change_pct).toFixed(2) + '%');
       } else {
-        $('#change' + jqSelector(quote.symbol)).html(quote.change);
+        $('#change' + jqSelector(quote.symbol)).html(parseFloat(quote.change).toFixed(2));
       }
 
       if (quote.change < 0) {
@@ -114,7 +114,12 @@ $(function() {
         $('#change' + jqSelector(quote.symbol)).toggleClass('red', false);
       }
 
-      $('#symbol' + jqSelector(quote.symbol)).html('<a target="_top" href="http://data.cnbc.com/quotes/' + quote.symbol + '">' + quote.shortName + '</a>');
+      if (quote.shortName.length > 7) {
+        $('#symbol' + jqSelector(quote.symbol)).html('<a target="_top" href="http://data.cnbc.com/quotes/' + quote.symbol + '">' + quote.symbol + '</a>');
+      } else {
+        $('#symbol' + jqSelector(quote.symbol)).html('<a target="_top" href="http://data.cnbc.com/quotes/' + quote.symbol + '">' + quote.shortName + '</a>');
+      }
+
 
       $('#change' + jqSelector(quote.symbol)).off('click');
       $('#change' + jqSelector(quote.symbol)).click(function(e) {

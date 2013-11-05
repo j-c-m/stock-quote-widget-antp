@@ -45,16 +45,20 @@
         },
         success: function(data) {
           if (data.QuickQuoteResult && data.QuickQuoteResult.QuickQuote) {
-            if(Array.isArray(data.QuickQuoteResult.QuickQuote)) {
-              sendResponse({data: data.QuickQuoteResult.QuickQuote}); 
+            if (Array.isArray(data.QuickQuoteResult.QuickQuote)) {
+              sendResponse({
+                data: data.QuickQuoteResult.QuickQuote
+              });
             } else {
               var ret = [];
               ret[0] = data.QuickQuoteResult.QuickQuote;
-              sendResponse({data: ret});
+              sendResponse({
+                data: ret
+              });
             }
           }
         }
       });
     }
-    return(true);
+    return (true);
   });

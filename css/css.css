@@ -1,12 +1,24 @@
 body {
   background-color: white;
   font-family: helvetica, arial;
+  font-size: 16px;
   margin: 6px 3px;
 }
 
 td {
   white-space: nowrap;
 }
+
+.change {
+  width: 60px;
+  max-width: 60px;
+  cursor: pointer;
+}
+
+.last,
+.symbol {
+}
+
 
 .red {
   color: #d14836;
