@@ -101,7 +101,11 @@ $(function() {
       $('#last' + jqSelector(quote.symbol)).html(quote.last);
 
       if (pct) {
-        $('#change' + jqSelector(quote.symbol)).html(parseFloat(quote.change_pct).toFixed(2) + '%');
+        if (Math.abs(parseFloat(quote.change_pct)) > 10) {
+          $('#change' + jqSelector(quote.symbol)).html(parseFloat(quote.change_pct).toFixed(1) + '%');
+        } else {
+          $('#change' + jqSelector(quote.symbol)).html(parseFloat(quote.change_pct).toFixed(2) + '%');
+        }
       } else {
         $('#change' + jqSelector(quote.symbol)).html(parseFloat(quote.change).toFixed(2));
       }
