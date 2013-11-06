@@ -118,10 +118,10 @@ $(function() {
         $('#change' + jqSelector(quote.symbol)).toggleClass('red', false);
       }
 
-      if (quote.shortName.length > 7) {
-        $('#symbol' + jqSelector(quote.symbol)).html('<a target="_top" href="http://data.cnbc.com/quotes/' + quote.symbol + '">' + quote.symbol + '</a>');
-      } else {
+      if (quote.shortName && quote.shortName.length <= 6) {
         $('#symbol' + jqSelector(quote.symbol)).html('<a target="_top" href="http://data.cnbc.com/quotes/' + quote.symbol + '">' + quote.shortName + '</a>');
+      } else {
+        $('#symbol' + jqSelector(quote.symbol)).html('<a target="_top" href="http://data.cnbc.com/quotes/' + quote.symbol + '">' + quote.symbol + '</a>');
       }
 
 

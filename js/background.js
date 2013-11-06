@@ -26,7 +26,7 @@
   });
 
   chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
-    console.log(sender);
+    //console.log(sender);
     if (request.action === "getQuote") {
       $.ajax({
         type: "POST",
